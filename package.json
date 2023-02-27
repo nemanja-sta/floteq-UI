@@ -4,12 +4,17 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "cypress": "^12.5.1"
+    "cypress": "^12.7.0"
+  },
+  "dependencies": {
+    "@faker-js/faker": "^7.6.0",
+    "dotenv": "^16.0.3"
   }
 }
