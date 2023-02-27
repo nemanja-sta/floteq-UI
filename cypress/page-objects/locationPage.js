@@ -17,4 +17,15 @@ export class LocationPage {
   validateAddedLocation(name) {
     cy.get(".p-4 > .grid > .col-12").should("contain.text", name);
   }
+
+  deleteLocation() {
+    cy.get(
+      ":nth-child(1) > :nth-child(3) > .w-btn-group > button.p-element > .pi"
+    ).click();
+    cy.get(".p-confirm-popup-accept > .p-button-label").click();
+  }
+
+  validateDeleteLocation(name) {
+    cy.get(".p-4 > .grid > .col-12").should("not.contain.text", name);
+  }
 }

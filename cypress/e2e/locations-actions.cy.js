@@ -17,4 +17,10 @@ describe("location actions", () => {
     locationPage.addLocation(name, adress);
     locationPage.validateAddedLocation(name);
   });
+
+  it("should edit location", () => {
+    locationPage.navigate();
+    locationPage.deleteLocation();
+    locationPage.validateDeleteLocation(name);
+  });
 });
