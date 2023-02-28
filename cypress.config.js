@@ -9,7 +9,9 @@ module.exports = defineConfig({
       superAdminEmail: "super@admin.com",
       superAdminPass: "password",
     },
-    // viewportWidth: 1920,
-    // viewportHeight: 1080,
+    viewportWidth: 1920,
+    viewportHeight: 1080,
+    watchForFileChanges: false,
+    experimentalRunAllSpecs: true,
   },
 });

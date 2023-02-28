@@ -12,6 +12,9 @@ describe("location actions", () => {
   let name = faker.address.cityName();
   let adress = faker.address.streetName();
 
+  let newName = faker.address.cityName();
+  let newAdress = faker.address.streetName();
+
   it("should add location", () => {
     locationPage.navigate();
     locationPage.addLocation(name, adress);
@@ -19,6 +22,12 @@ describe("location actions", () => {
   });
 
   it("should edit location", () => {
+    locationPage.navigate();
+    locationPage.editLocation(newName, newAdress);
+    locationPage.validateEditLocation(newName, newAdress);
+  });
+
+  it("should delete location", () => {
     locationPage.navigate();
     locationPage.deleteLocation();
     locationPage.validateDeleteLocation(name);
