@@ -24,7 +24,7 @@ describe("location actions", () => {
   it("should edit location", () => {
     locationPage.navigate();
     locationPage.editLocation(newName, newAdress);
-    locationPage.validateEditLocation(newName, newAdress);
+    locationPage.validateEditLocation(newName);
   });
 
   it("should delete location", () => {

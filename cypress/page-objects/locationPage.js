@@ -54,8 +54,8 @@ export class LocationPage {
     this.saveBtn().click({ force: true });
   }
 
-  validateEditLocation(newName, newAdress) {
-    this.tableNames().should("contain.text", name);
+  validateEditLocation(newName) {
+    this.tableNames().should("contain.text", newName);
   }
 
   deleteLocation() {
