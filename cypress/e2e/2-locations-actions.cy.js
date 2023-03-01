@@ -1,7 +1,7 @@
 /// <reference types="cypress" />
 
-import { faker } from "@faker-js/faker";
-const { LocationPage } = require("../page-objects/locationPage");
+import { LocationPage } from "../page-objects/locationPage";
+import { handleLocationData } from "../utils/data";
 
 describe("location actions", () => {
   beforeEach(() => {
@@ -9,27 +9,24 @@ describe("location actions", () => {
   });
 
   const locationPage = new LocationPage();
-  let name = faker.address.cityName();
-  let adress = faker.address.streetName();
-
-  let newName = faker.address.cityName();
-  let newAdress = faker.address.streetName();
+  const dataAdd = handleLocationData();
+  const dataEdit = handleLocationData();
 
   it("should add location", () => {
     locationPage.navigate();
-    locationPage.addLocation(name, adress);
-    locationPage.validateAddedLocation(name);
+    locationPage.addLocation(dataAdd.name, dataAdd.address);
+    locationPage.validateAddedLocation(dataAdd.name);
   });
 
   it("should edit location", () => {
     locationPage.navigate();
-    locationPage.editLocation(newName, newAdress);
-    locationPage.validateEditLocation(newName);
+    locationPage.editLocation(dataEdit.name, dataEdit.address);
+    locationPage.validateEditLocation(dataEdit.name);
   });
 
   it("should delete location", () => {
     locationPage.navigate();
     locationPage.deleteLocation();
-    locationPage.validateDeleteLocation(name);
+    locationPage.validateDeleteLocation(dataEdit.name);
   });
 });
