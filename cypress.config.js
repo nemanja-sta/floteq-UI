@@ -21,5 +21,6 @@ module.exports = defineConfig({
       html: true,
       json: true,
     },
+    video: false,
   },
 });
