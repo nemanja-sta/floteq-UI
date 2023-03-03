@@ -13,5 +13,13 @@ module.exports = defineConfig({
     viewportHeight: 1080,
     watchForFileChanges: false,
     experimentalRunAllSpecs: true,
+    reporter: "mochawesome",
+    reporterOptions: {
+      reportDir: "cypress/results",
+      charts: true,
+      overwrite: false,
+      html: true,
+      json: true,
+    },
   },
 });
