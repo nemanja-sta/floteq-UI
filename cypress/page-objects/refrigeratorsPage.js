@@ -5,10 +5,10 @@ export class RefrigeratorsPage {
   navigateGroup() {
     cy.visit(`${Cypress.env("baseUrl") + "/#/refrigerator-groups"}`);
   }
-  saveBtn() {
+  createRefBtn() {
     return cy.get("app-button.ng-star-inserted > .p-element");
   }
-  createRefBtn() {
+  saveBtn() {
     return cy.get("app-button.ng-star-inserted > .p-element");
   }
   deviceName() {
@@ -16,32 +16,37 @@ export class RefrigeratorsPage {
       ":nth-child(1) > :nth-child(1) > app-input.ng-star-inserted > .field > .p-inputtext"
     );
   }
-  locationDrpDwn() {
+  venueDrpDwn() {
     return cy.get(
       ":nth-child(2) > app-dropdown.ng-star-inserted > .field > .p-inputwrapper > .w-full > .p-dropdown-label"
     );
   }
+  locationDrpDwn() {
+    return cy.get(
+      ":nth-child(3) > app-dropdown.ng-star-inserted > .field > .p-inputwrapper > .w-full > .p-dropdown-label"
+    );
+  }
   firstItemInDrpDwn() {
-    return cy.get(":nth-child(1) > .p-ripple");
+    return cy.get(":nth-child(2) > .p-ripple");
   }
   deviceIMEI() {
     return cy.get(
-      ":nth-child(1) > :nth-child(3) > app-input.ng-star-inserted > .field > .p-inputtext"
+      ":nth-child(4) > app-input.ng-star-inserted > .field > .p-inputtext"
     );
   }
   timezone() {
     return cy.get(
-      ":nth-child(4) > app-dropdown.ng-star-inserted > .field > .p-inputwrapper > .w-full > .p-dropdown-label"
+      ":nth-child(5) > app-dropdown.ng-star-inserted > .field > .p-inputwrapper > .w-full > .p-dropdown-label"
     );
   }
   minTemperature() {
     return cy.get(
-      ":nth-child(2) > :nth-child(1) > app-input.ng-star-inserted > .field > .p-inputtext"
+      ":nth-child(2) > :nth-child(2) > app-input.ng-star-inserted > .field > .p-inputtext"
     );
   }
   maxTemperature() {
     return cy.get(
-      ":nth-child(2) > :nth-child(2) > app-input.ng-star-inserted > .field > .p-inputtext"
+      ":nth-child(2) > :nth-child(1) > app-input.ng-star-inserted > .field > .p-inputtext"
     );
   }
   temperatureHeartbeat() {
@@ -62,27 +67,21 @@ export class RefrigeratorsPage {
   deviceDesc() {
     return cy.get(".p-inputtextarea");
   }
-  overrideDvcConf() {
-    return cy.get(
-      ":nth-child(11) > app-form-factory-core > app-toggle.ng-star-inserted > .field > .p-element > .p-inputswitch > .p-inputswitch-slider"
-    );
-  }
+
   editRefBtn() {
-    return cy.get(
-      ":nth-child(1) > :nth-child(8) > .w-btn-group > a.p-element > .pi"
-    );
+    return cy.get(":nth-child(1) > :nth-child(8) > .w-btn-group > a.p-element");
   }
   editRefGroupBtn() {
-    return cy.get(":nth-child(1) > :nth-child(5) > .w-btn-group > .mr-2");
+    return cy.get(":nth-child(1) > :nth-child(5) > .w-btn-group > a.p-element");
   }
   deleteBtn() {
     return cy.get(
-      ':nth-child(1) > :nth-child(8) > .w-btn-group > [ptooltip="Delete"] > .pi'
+      ':nth-child(1) > :nth-child(8) > .w-btn-group > [ptooltip="Delete"]'
     );
   }
   deleteGroupBtn() {
     return cy.get(
-      ":nth-child(1) > :nth-child(5) > .w-btn-group > button.p-element > .pi"
+      ':nth-child(1) > :nth-child(5) > .w-btn-group > [ptooltip="Delete"]'
     );
   }
   confDeleteBtn() {
@@ -107,6 +106,9 @@ export class RefrigeratorsPage {
     this.navigate();
     this.createRefBtn().click({ force: true });
     this.deviceName().type(dvcName);
+    this.venueDrpDwn().click();
+    this.firstItemInDrpDwn().click();
+    cy.wait(1000);
     this.locationDrpDwn().click();
     this.firstItemInDrpDwn().click();
     this.deviceIMEI().type(imei);
@@ -118,7 +120,6 @@ export class RefrigeratorsPage {
     this.refStnByPwr().type(stByPwr);
     this.refCompPwr().type(cmpPwr);
     this.deviceDesc().type(desc);
-    this.overrideDvcConf().click();
     this.saveBtn().click({ force: true });
   }
   validateAddedRefrigerator(imei) {
@@ -136,10 +137,11 @@ export class RefrigeratorsPage {
     desc
   ) {
     this.navigate();
-    cy.wait(5000);
     this.editRefBtn().click({ force: true });
     this.deviceName().clear();
     this.deviceName().type(dvcName);
+    this.venueDrpDwn().click();
+    this.firstItemInDrpDwn().click();
     this.locationDrpDwn().click();
     this.firstItemInDrpDwn().click();
     this.deviceIMEI().clear();
@@ -166,7 +168,6 @@ export class RefrigeratorsPage {
 
   deleteRefrigerator() {
     this.navigate();
-    cy.wait(5000);
     this.deleteBtn().click();
     this.confDeleteBtn().click();
   }
@@ -178,12 +179,21 @@ export class RefrigeratorsPage {
     this.navigateGroup();
     this.createRefBtn().click({ force: true });
     this.deviceName().type(groupName);
+    cy.wait(1000);
+    this.venueDrpDwn().click();
+    this.firstItemInDrpDwn().click();
+    cy.wait(1000);
     this.locationDrpDwn().click();
     this.firstItemInDrpDwn().click();
+    cy.wait(1000);
     this.maxTemperature().type(maxT);
+    cy.wait(1000);
     this.minTemperature().type(minT);
+    cy.wait(1000);
     this.temperatureHeartbeat().type(tHeartBeat);
+    cy.wait(1000);
     this.deviceDesc().type(desc);
+    cy.wait(1000);
     this.saveBtn().click({ force: true });
   }
 
@@ -193,30 +203,36 @@ export class RefrigeratorsPage {
 
   editRefrigeratorGroup(groupName, maxT, minT, tHeartBeat, desc) {
     this.navigateGroup();
-    cy.wait(5000);
     this.editRefGroupBtn().click({ force: true });
     this.deviceName().clear();
     this.deviceName().type(groupName);
+    cy.wait(1000);
+    this.venueDrpDwn().click();
+    this.firstItemInDrpDwn().click();
+    cy.wait(1000);
     this.locationDrpDwn().click();
     this.firstItemInDrpDwn().click();
+    cy.wait(1000);
     this.maxTemperature().clear();
     this.maxTemperature().type(maxT);
+    cy.wait(1000);
     this.minTemperature().clear();
     this.minTemperature().type(minT);
+    cy.wait(1000);
     this.temperatureHeartbeat().clear();
     this.temperatureHeartbeat().type(tHeartBeat);
+    cy.wait(1000);
     this.deviceDesc().clear();
     this.deviceDesc().type(desc);
+    cy.wait(1000);
     this.saveBtn().click({ force: true });
   }
   validateEditedRefrigeratorGroup(groupName) {
     this.tableFirstName().should("contain.text", groupName);
-    this.tableFirstName().should("not.contain.text", groupName);
   }
 
   deleteRefrigeratorGroup() {
     this.navigateGroup();
-    cy.wait(5000);
     this.deleteGroupBtn().click();
     this.confDeleteBtn().click();
   }

@@ -14,13 +14,13 @@ describe("location actions", () => {
 
   it("should add location", () => {
     locationPage.navigate();
-    locationPage.addLocation(dataAdd.name, dataAdd.address);
+    locationPage.addLocation(dataAdd.name);
     locationPage.validateAddedLocation(dataAdd.name);
   });
 
   it("should edit location", () => {
     locationPage.navigate();
-    locationPage.editLocation(dataEdit.name, dataEdit.address);
+    locationPage.editLocation(dataEdit.name);
     locationPage.validateEditLocation(dataEdit.name);
   });
 

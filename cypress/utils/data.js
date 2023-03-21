@@ -18,9 +18,34 @@ const handleRefrigeratorData = () => {
 const handleLocationData = () => {
   const data = {
     name: faker.address.cityName(),
-    address: faker.address.streetName(),
   };
   return data;
 };
 
-export { handleRefrigeratorData, handleLocationData };
+const handleVenuesData = () => {
+  const data = {
+    name: faker.address.state(),
+    address: faker.address.streetAddress(),
+    longitude: faker.address.longitude(),
+    latitude: faker.address.latitude(),
+  };
+  return data;
+};
+
+const handleCompaniesData = () => {
+  const data = {
+    name: faker.company.name(),
+    address: faker.address.streetAddress(),
+    bsnNmb: faker.lorem.word(9),
+    email: faker.internet.email(),
+    adminEmail: faker.internet.email(),
+  };
+  return data;
+};
+
+export {
+  handleRefrigeratorData,
+  handleLocationData,
+  handleVenuesData,
+  handleCompaniesData,
+};

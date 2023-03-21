@@ -1,69 +1,58 @@
 export class LocationPage {
   navigate() {
-    cy.visit(`${Cypress.env("baseUrl") + "/#/locations"}`);
+    cy.visit(`${Cypress.env("baseUrl") + "/#/venues/edit/3"}`);
   }
 
   createLocationBtn() {
-    return cy.get("app-button.ng-star-inserted > .p-element");
+    return cy.get(".mb-3 > .main-btn");
   }
   nameInputField() {
-    return cy.get(
-      ":nth-child(1) > app-input.ng-star-inserted > .field > .p-inputtext"
-    );
-  }
-  adressInputField() {
-    return cy.get(
-      ":nth-child(2) > app-input.ng-star-inserted > .field > .p-inputtext"
-    );
+    return cy.get(".p-inputtext");
   }
   saveBtn() {
     return cy.get("app-button.ng-star-inserted > .p-element");
   }
-  tableNames() {
-    return cy.get(".p-4 > .grid > .col-12");
+  locationFirstItem() {
+    return cy.get(
+      ".p-datatable-tbody > :nth-child(1) > :nth-child(1) > .ng-star-inserted"
+    );
   }
   editBtn() {
-    return cy.get(":nth-child(1) > :nth-child(3) > .w-btn-group > .mr-2");
+    return cy.get(":nth-child(1) > :nth-child(2) > .w-btn-group > .mr-2");
   }
   deleteBtn() {
     return cy.get(
-      ":nth-child(1) > :nth-child(3) > .w-btn-group > button.p-element > .pi"
+      ":nth-child(1) > :nth-child(2) > .w-btn-group > button.p-element"
     );
   }
-  confrmDltBtn() {
-    return cy.get(".p-confirm-popup-accept > .p-button-label");
+  deleteConfBtn() {
+    return cy.get(".p-confirm-popup-accept");
   }
 
-  addLocation(name, adress) {
+  addLocation(locationName) {
     this.createLocationBtn().click({ force: true });
-    this.nameInputField().type(name);
-    this.adressInputField().type(adress);
+    this.nameInputField().type(locationName);
     this.saveBtn().click({ force: true });
   }
-
-  validateAddedLocation(name) {
-    this.tableNames().should("contain.text", name);
+  validateAddedLocation(locationName) {
+    this.locationFirstItem().should("contain.text", locationName);
   }
 
-  editLocation(newName, newAdress) {
+  editLocation(locationName) {
     this.editBtn().click();
     this.nameInputField().clear();
-    this.nameInputField().type(newName);
-    this.adressInputField().clear();
-    this.adressInputField().type(newAdress);
+    this.nameInputField().type(locationName);
     this.saveBtn().click({ force: true });
   }
-
-  validateEditLocation(newName) {
-    this.tableNames().should("contain.text", newName);
+  validateEditLocation(locationName) {
+    this.locationFirstItem().should("contain.text", locationName);
   }
 
   deleteLocation() {
     this.deleteBtn().click();
-    this.confrmDltBtn().click();
+    this.deleteConfBtn().click();
   }
-
   validateDeleteLocation(name) {
-    this.tableNames().should("not.contain.text", name);
+    this.locationFirstItem().should("not.contain.text", name);
   }
 }
