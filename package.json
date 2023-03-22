@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "report:merge": "mochawesome-merge cypress/results/*.json -o cypress/report.json",
+    "report:generate": "marge cypress/report.json --charts true",
     "cypress:open": "cypress open",
     "cypress:run": "cypress run"
   },
@@ -12,12 +14,12 @@
   "license": "ISC",
   "devDependencies": {
     "cypress": "^12.8.1",
-    "mochawesome-merge": "^4.2.2"
+    "mochawesome": "^7.1.3",
+    "mochawesome-merge": "^4.3.0",
+    "mochawesome-report-generator": "^6.2.0"
   },
   "dependencies": {
     "@faker-js/faker": "^7.6.0",
-    "dotenv": "^16.0.3",
-    "mochawesome": "^7.1.3",
-    "mochawesome-report-generator": "^6.2.0"
+    "dotenv": "^16.0.3"
   }
 }
