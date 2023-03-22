@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "report:merge": "mochawesome-merge cypress/results/*.json -o cypress/report.json",
-    "report:generate": "marge cypress/report.json --charts true",
+    "report:generate": "marge cypress/report.json --charts true --reportFilename [datetime]-FLOTEQ-report",
     "cypress:open": "cypress open",
-    "cypress:run": "cypress run"
+    "test": "cypress run"
   },
   "keywords": [],
   "author": "",
