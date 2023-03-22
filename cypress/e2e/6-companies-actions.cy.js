@@ -3,7 +3,7 @@
 import { CompaniesPage } from "../page-objects/companiesPage";
 import { handleCompaniesData } from "../utils/data";
 
-describe("refrigerators actions", () => {
+describe("company actions", () => {
   const companiesPage = new CompaniesPage();
   const dataAdd = handleCompaniesData();
   const dataEdit = handleCompaniesData();
@@ -35,6 +35,6 @@ describe("refrigerators actions", () => {
 
   it("should delete company", () => {
     companiesPage.deleteCompany();
-    companiesPage.validateDeletedCompany(dataAdd.name);
+    companiesPage.validateDeletedCompany(dataEdit.name);
   });
 });
