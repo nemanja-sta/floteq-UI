@@ -26,8 +26,11 @@ export class RefrigeratorsPage {
       ":nth-child(3) > app-dropdown.ng-star-inserted > .field > .p-inputwrapper > .w-full > .p-dropdown-label"
     );
   }
+  thirdItemInDrpDwn() {
+    return cy.get(":nth-child(3) > .p-ripple");
+  }
   firstItemInDrpDwn() {
-    return cy.get(":nth-child(2) > .p-ripple");
+    return cy.get(":nth-child(1) > .p-ripple");
   }
   deviceIMEI() {
     return cy.get(
@@ -69,23 +72,23 @@ export class RefrigeratorsPage {
   }
 
   editRefBtn() {
-    return cy.get(":nth-child(1) > :nth-child(8) > .w-btn-group > a.p-element");
+    return cy.get(":nth-child(1) > :nth-child(9) > .w-btn-group > a.p-element");
   }
   editRefGroupBtn() {
-    return cy.get(":nth-child(1) > :nth-child(5) > .w-btn-group > a.p-element");
+    return cy.get(":nth-child(1) > :nth-child(6) > .w-btn-group > a.p-element");
   }
   deleteBtn() {
     return cy.get(
-      ':nth-child(1) > :nth-child(8) > .w-btn-group > [ptooltip="Delete"]'
+      ':nth-child(1) > :nth-child(9) > .w-btn-group > [ptooltip="Delete"]'
     );
   }
   deleteGroupBtn() {
     return cy.get(
-      ':nth-child(1) > :nth-child(5) > .w-btn-group > [ptooltip="Delete"]'
+      ':nth-child(1) > :nth-child(6) > .w-btn-group > [ptooltip="Delete"]'
     );
   }
   confDeleteBtn() {
-    return cy.get(".p-confirm-popup-accept > .p-button-label");
+    return cy.get(".p-confirm-popup-accept");
   }
   tableFirstName() {
     return cy.get(
@@ -107,7 +110,7 @@ export class RefrigeratorsPage {
     this.createRefBtn().click({ force: true });
     this.deviceName().type(dvcName);
     this.venueDrpDwn().click();
-    this.firstItemInDrpDwn().click();
+    this.thirdItemInDrpDwn().click();
     cy.wait(1000);
     this.locationDrpDwn().click();
     this.firstItemInDrpDwn().click();
@@ -141,7 +144,7 @@ export class RefrigeratorsPage {
     this.deviceName().clear();
     this.deviceName().type(dvcName);
     this.venueDrpDwn().click();
-    this.firstItemInDrpDwn().click();
+    this.thirdItemInDrpDwn().click();
     this.locationDrpDwn().click();
     this.firstItemInDrpDwn().click();
     this.deviceIMEI().clear();
@@ -181,7 +184,7 @@ export class RefrigeratorsPage {
     this.deviceName().type(groupName);
     cy.wait(1000);
     this.venueDrpDwn().click();
-    this.firstItemInDrpDwn().click();
+    this.thirdItemInDrpDwn().click();
     cy.wait(1000);
     this.locationDrpDwn().click();
     this.firstItemInDrpDwn().click();
@@ -208,7 +211,7 @@ export class RefrigeratorsPage {
     this.deviceName().type(groupName);
     cy.wait(1000);
     this.venueDrpDwn().click();
-    this.firstItemInDrpDwn().click();
+    this.thirdItemInDrpDwn().click();
     cy.wait(1000);
     this.locationDrpDwn().click();
     this.firstItemInDrpDwn().click();
